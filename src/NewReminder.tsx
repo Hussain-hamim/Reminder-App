@@ -16,21 +16,23 @@ const NewReminder = ({ addReminder }: NewReminderProps): JSX.Element => {
   };
 
   return (
-    <form onSubmit={submitForm}>
-      <label htmlFor="title" className="mb-2">
-        Add Reminder
-      </label>
-      <input
-        className="form-control"
-        id="title"
-        type="text"
-        value={title}
-        onChange={(e) => setTitle(e.target.value)}
-      />
-      <button type="submit" className="btn my-3 btn-primary rounded-pill">
-        Add Reminder
-      </button>
-    </form>
+    <>
+      <h2 className="appName">Your Reminder App</h2>
+      <form onSubmit={submitForm}>
+        <label htmlFor="title" className="mb-2"></label>
+        <input
+          placeholder="Type new reminder here..."
+          className="form-control"
+          id="title"
+          type="text"
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+        />
+        <button type="submit" className="btn my-3 btn-primary rounded-pill">
+          Add Reminder
+        </button>
+      </form>
+    </>
   );
 };
 
