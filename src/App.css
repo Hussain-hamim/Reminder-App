@@ -24,3 +24,7 @@ body {
     transform: rotate(360deg);
   }
 }
+
+.appName {
+  text-align: center;
+}

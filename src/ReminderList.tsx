@@ -1,4 +1,3 @@
-import { useState } from "react";
 import Reminder from "./model/reminder";
 
 interface ReminderListProps {
