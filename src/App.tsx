@@ -1,26 +1,37 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from "react";
+import ReminderList from "./ReminderList";
+import ReminderService from "./services/reminder";
+import Reminder from "./model/reminder";
+import NewReminder from "./NewReminder";
+import "./App.css";
 
 function App() {
+  const [reminders, setReminders] = useState<Reminder[]>([]);
+
+  useEffect(() => {
+    loadReminder();
+  }, []);
+
+  const loadReminder = async () => {
+    const reminders = await ReminderService.getReminder();
+    setReminders(reminders);
+  };
+
+  const removeReminder = (id: number) => {
+    setReminders(reminders.filter((reminder) => reminder.id !== id));
+  };
+
+  const addReminder = async (title: string) => {
+    // console.log(title);
+    const newRem = await ReminderService.addReminder(title);
+    setReminders([newRem, ...reminders]);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <NewReminder addReminder={addReminder} />
+      <ReminderList onRemoveReminder={removeReminder} items={reminders} />
     </div>
   );
 }
-
 export default App;
