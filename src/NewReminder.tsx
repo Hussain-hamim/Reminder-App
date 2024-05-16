@@ -20,6 +20,7 @@ const NewReminder = ({ addReminder }: NewReminderProps): JSX.Element => {
         Add Reminder
       </label>
       <input
+placeholder="Type your reminder here..."
         className="form-control"
         id="title"
         type="text"
