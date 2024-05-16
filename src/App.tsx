@@ -7,14 +7,17 @@ import "./App.css";
 
 function App() {
   const [reminders, setReminders] = useState<Reminder[]>([]);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
+    setLoading(true);
     loadReminder();
   }, []);
 
   const loadReminder = async () => {
     const reminders = await ReminderService.getReminder();
     setReminders(reminders);
+    setLoading(false);
   };
 
   const removeReminder = (id: number) => {
@@ -30,7 +33,11 @@ function App() {
   return (
     <div>
       <NewReminder addReminder={addReminder} />
-      <ReminderList onRemoveReminder={removeReminder} items={reminders} />
+      <ReminderList
+        onLoading={loading}
+        onRemoveReminder={removeReminder}
+        items={reminders}
+      />
     </div>
   );
 }

@@ -1,3 +1,26 @@
 body {
   padding: 20px;
+  background-color: #ecf5ff;
+  /* font-size: 62.5%; */
+}
+
+/* Loader */
+#loader {
+  margin-top: 30px;
+  margin-left: 35%;
+  border: 15px solid white;
+  border-radius: 50%;
+  border-top: 15px solid #56a5eb;
+  width: 100px;
+  height: 100px;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
